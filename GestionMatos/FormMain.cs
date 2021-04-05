@@ -424,6 +424,7 @@ namespace GestionMatos
             string strcon = "Server=localhost;Database=gestionmatos1;Uid=root;Pwd=;";
             MySqlConnection cnSQL = null;
             MySqlCommand cmSQL = null;
+            
             string strSQL;
 
             cnSQL = new MySqlConnection(strcon);
@@ -438,12 +439,14 @@ namespace GestionMatos
             textBoxSerie.Text = dataGridViewMateriel.CurrentRow.Cells[2].Value.ToString();
             dateTimePickerInstall.Value = Convert.ToDateTime(dataGridViewMateriel.CurrentRow.Cells[3].Value);
             numericUpDownMTBF.Text = dataGridViewMateriel.CurrentRow.Cells[4].Value.ToString();
-            int a = Convert.ToInt32(dataGridViewMateriel.CurrentRow.Cells[5].Value);
+
+            string nomSite = dataGridViewMateriel.CurrentRow.Cells[5].Value.ToString();
+            string nomClient = dataGridViewMateriel.CurrentRow.Cells[6].Value.ToString();
+            string nomMarque = dataGridViewMateriel.CurrentRow.Cells[7].Value.ToString();
+
+            MessageBox.Show(comboBoxSite.SelectedValue.ToString());
             
-            // comboBoxSite.SelectedValue = dataGridViewMateriel.CurrentRow.Cells[5].Value.ToString();
-            // comboBoxClient.SelectedValue = dataGridViewMateriel.CurrentRow.Cells[6].Value.ToString();
-            // comboBoxMarque.SelectedValue = dataGridViewMateriel.CurrentRow.Cells[7].Value.ToString();
-            // Comment recuperer des valeurs liees a d'autres tables ?
+            // comment comparer la string que nous retourne la cellule à la comboBoxSite.SelectedValue, vu que la SelectedValue est un int
 
         }
 
