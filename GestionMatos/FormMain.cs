@@ -415,7 +415,8 @@ namespace GestionMatos
             }
         }
 
-        // ZONE BOUTON MODIFIER
+        // FONCTION DE SELECTION D'UNE CELLULE POUR CHAQUE DATAGRID
+        // ET ZONE DE CONFIG DU BOUTON MODIFIER
 
         private void dataGridViewMateriel_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -443,8 +444,6 @@ namespace GestionMatos
             string nomSite = dataGridViewMateriel.CurrentRow.Cells[5].Value.ToString();
             string nomClient = dataGridViewMateriel.CurrentRow.Cells[6].Value.ToString();
             string nomMarque = dataGridViewMateriel.CurrentRow.Cells[7].Value.ToString();
-
-            // MessageBox.Show(comboBoxSite.SelectedValue.ToString() + ' ' + nomSite);
             
             void ConvertSiteStringToId()
             {
@@ -538,8 +537,6 @@ namespace GestionMatos
             ConvertClientStringToId();
             ConvertMarqueStringToId();
 
-            // comment comparer la string que nous retourne la cellule à la comboBoxSite.SelectedValue, vu que la SelectedValue est un int
-
         }
 
         private void buttonUpdateMateriel_Click(object sender, EventArgs e)
@@ -575,5 +572,61 @@ namespace GestionMatos
 
             this.materielTableAdapter.Fill(this.gestionmatos1DataSet.materiel);
         }
+
+
+        private void dataGridViewSite_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int idSite = Convert.ToInt32(dataGridViewSite.CurrentRow.Cells[0].Value);
+
+            string strcon = "Server=localhost;Database=gestionmatos1;Uid=root;Pwd=;";
+            MySqlConnection cnSQL = null;
+            MySqlCommand cmSQL = null;
+
+            string strSQL;
+
+            cnSQL = new MySqlConnection(strcon);
+            cnSQL.Open();
+            strSQL = "SELECT * FROM site WHERE id = " + idSite;
+
+            cmSQL = new MySqlCommand(strSQL, cnSQL);
+            cmSQL.ExecuteNonQuery();
+            cnSQL.Close();
+
+            textBoxNameSite.Text = dataGridViewSite.CurrentRow.Cells[1].Value.ToString();
+            textBoxAdresseSite.Text = dataGridViewSite.CurrentRow.Cells[2].Value.ToString();
+
+        }
+
+
+        private void buttonUpdateSites_Click(object sender, EventArgs e)
+        {
+            string strcon = "Server=localhost;Database=gestionmatos1;Uid=root;Pwd=;";
+            MySqlConnection cnSQL = null;
+            MySqlCommand cmSQL = null;
+            string strSQL;
+
+            int idSite = Convert.ToInt32(dataGridViewSite.CurrentRow.Cells[0].Value);
+
+            this.nameSite = textBoxNameSite.Text;
+            this.adresseSite = textBoxAdresseSite.Text;
+
+            nameSite = nameSite.Replace("'", "''");
+            adresseSite = adresseSite.Replace("'", "''");
+
+            cnSQL = new MySqlConnection(strcon);
+            cnSQL.Open();
+            strSQL = "UPDATE `site` " +
+                    "SET Nom = '" + nameSite + "', Adresse = '" + adresseSite + "' WHERE ID = " + idSite;
+
+            cmSQL = new MySqlCommand(strSQL, cnSQL);
+            cmSQL.ExecuteNonQuery();
+            cnSQL.Close();
+
+            this.siteTableAdapter.Fill(this.gestionmatos1DataSet.site);
+        }
+
+
+
+
     }
 }

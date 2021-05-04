@@ -30,7 +30,7 @@ namespace GestionMatos
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControlMain = new System.Windows.Forms.TabControl();
             this.tabPageMateriel = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -68,6 +68,7 @@ namespace GestionMatos
             this.materielBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.buttonUpdateSites = new System.Windows.Forms.Button();
             this.buttonDelSite = new System.Windows.Forms.Button();
             this.textBoxAdresseSite = new System.Windows.Forms.TextBox();
             this.textBoxNameSite = new System.Windows.Forms.TextBox();
@@ -509,6 +510,7 @@ namespace GestionMatos
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.buttonUpdateSites);
             this.panel2.Controls.Add(this.buttonDelSite);
             this.panel2.Controls.Add(this.textBoxAdresseSite);
             this.panel2.Controls.Add(this.textBoxNameSite);
@@ -522,9 +524,19 @@ namespace GestionMatos
             this.panel2.Size = new System.Drawing.Size(264, 479);
             this.panel2.TabIndex = 2;
             // 
+            // buttonUpdateSites
+            // 
+            this.buttonUpdateSites.Location = new System.Drawing.Point(70, 383);
+            this.buttonUpdateSites.Name = "buttonUpdateSites";
+            this.buttonUpdateSites.Size = new System.Drawing.Size(121, 23);
+            this.buttonUpdateSites.TabIndex = 27;
+            this.buttonUpdateSites.Text = "Modifier";
+            this.buttonUpdateSites.UseVisualStyleBackColor = true;
+            this.buttonUpdateSites.Click += new System.EventHandler(this.buttonUpdateSites_Click);
+            // 
             // buttonDelSite
             // 
-            this.buttonDelSite.Location = new System.Drawing.Point(70, 402);
+            this.buttonDelSite.Location = new System.Drawing.Point(70, 426);
             this.buttonDelSite.Name = "buttonDelSite";
             this.buttonDelSite.Size = new System.Drawing.Size(121, 23);
             this.buttonDelSite.TabIndex = 26;
@@ -568,7 +580,7 @@ namespace GestionMatos
             // 
             // buttonAddSite
             // 
-            this.buttonAddSite.Location = new System.Drawing.Point(70, 346);
+            this.buttonAddSite.Location = new System.Drawing.Point(70, 340);
             this.buttonAddSite.Name = "buttonAddSite";
             this.buttonAddSite.Size = new System.Drawing.Size(121, 23);
             this.buttonAddSite.TabIndex = 21;
@@ -598,8 +610,10 @@ namespace GestionMatos
             this.dataGridViewSite.Dock = System.Windows.Forms.DockStyle.Left;
             this.dataGridViewSite.Location = new System.Drawing.Point(3, 3);
             this.dataGridViewSite.Name = "dataGridViewSite";
+            this.dataGridViewSite.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewSite.Size = new System.Drawing.Size(740, 479);
             this.dataGridViewSite.TabIndex = 0;
+            this.dataGridViewSite.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewSite_CellClick);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -1061,8 +1075,8 @@ namespace GestionMatos
             // dataGridViewTextBoxColumn16
             // 
             this.dataGridViewTextBoxColumn16.DataPropertyName = "ID";
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            this.dataGridViewTextBoxColumn16.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            this.dataGridViewTextBoxColumn16.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridViewTextBoxColumn16.HeaderText = "ID";
             this.dataGridViewTextBoxColumn16.Name = "dataGridViewTextBoxColumn16";
             this.dataGridViewTextBoxColumn16.Width = 50;
@@ -1351,6 +1365,7 @@ namespace GestionMatos
         private System.Windows.Forms.DataGridViewTextBoxColumn dateplanifieeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn materielDataGridViewTextBoxColumn;
         private System.Windows.Forms.Button buttonUpdateMateriel;
+        private System.Windows.Forms.Button buttonUpdateSites;
     }
 }
 

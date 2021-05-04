@@ -61,7 +61,6 @@ D:\VisualStudio2019\GestionMatos\GestionMatos\GestionMatos\bin\Debug\K4os.Compre
 D:\VisualStudio2019\GestionMatos\GestionMatos\GestionMatos\bin\Debug\K4os.Hash.xxHash.dll
 D:\VisualStudio2019\GestionMatos\GestionMatos\GestionMatos\bin\Debug\System.Numerics.Vectors.dll
 D:\VisualStudio2019\GestionMatos\GestionMatos\GestionMatos\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
-D:\VisualStudio2019\GestionMatos\GestionMatos\GestionMatos\obj\Debug\GestionMatos.csprojAssemblyReference.cache
 D:\VisualStudio2019\GestionMatos\GestionMatos\GestionMatos\obj\Debug\Projet_PPE_GM.exe.config
 D:\VisualStudio2019\GestionMatos\GestionMatos\GestionMatos\obj\Debug\GestionMatos.FormMain.resources
 D:\VisualStudio2019\GestionMatos\GestionMatos\GestionMatos\obj\Debug\GestionMatos.FormConnection.resources
@@ -71,3 +70,4 @@ D:\VisualStudio2019\GestionMatos\GestionMatos\GestionMatos\obj\Debug\GestionMato
 D:\VisualStudio2019\GestionMatos\GestionMatos\GestionMatos\obj\Debug\GestionMatos.csproj.CopyComplete
 D:\VisualStudio2019\GestionMatos\GestionMatos\GestionMatos\obj\Debug\Projet_PPE_GM.exe
 D:\VisualStudio2019\GestionMatos\GestionMatos\GestionMatos\obj\Debug\Projet_PPE_GM.pdb
+D:\VisualStudio2019\GestionMatos\GestionMatos\GestionMatos\obj\Debug\GestionMatos.csprojAssemblyReference.cache
