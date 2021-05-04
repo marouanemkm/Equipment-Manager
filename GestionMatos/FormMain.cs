@@ -444,21 +444,134 @@ namespace GestionMatos
             string nomClient = dataGridViewMateriel.CurrentRow.Cells[6].Value.ToString();
             string nomMarque = dataGridViewMateriel.CurrentRow.Cells[7].Value.ToString();
 
-            MessageBox.Show(comboBoxSite.SelectedValue.ToString());
+            // MessageBox.Show(comboBoxSite.SelectedValue.ToString() + ' ' + nomSite);
             
+            void ConvertSiteStringToId()
+            {
+                cnSQL = new MySqlConnection(strcon);
+                cnSQL.Open();
+
+                string SiteStrSQL = "SELECT * FROM site WHERE Nom = '" + nomSite + "'";
+
+                MySqlCommand SiteCmSQL = new MySqlCommand(SiteStrSQL, cnSQL);
+
+                MySqlDataReader SiteSQL = SiteCmSQL.ExecuteReader();
+
+                try
+                {
+                    while (SiteSQL.Read())
+                    {
+                        string Sitevarchar = SiteSQL.GetString(0);
+                        int SiteId = Convert.ToInt32(Sitevarchar);
+
+                        comboBoxSite.SelectedValue = SiteId;
+                    }
+                }
+
+                finally
+                {
+                    SiteSQL.Close();
+                    cnSQL.Close();
+                }
+            }
+
+            void ConvertClientStringToId()
+            {
+                cnSQL = new MySqlConnection(strcon);
+                cnSQL.Open();
+
+                string ClientStrSQL = "SELECT * FROM client WHERE Nom = '" + nomClient + "'";
+
+                MySqlCommand ClientCmSQL = new MySqlCommand(ClientStrSQL, cnSQL);
+
+                MySqlDataReader ClientSQL = ClientCmSQL.ExecuteReader();
+
+                try
+                {
+                    while (ClientSQL.Read())
+                    {
+                        string Clientvarchar = ClientSQL.GetString(0);
+                        int ClientId = Convert.ToInt32(Clientvarchar);
+
+                        comboBoxClient.SelectedValue = ClientId;
+                    }
+                }
+
+                finally
+                {
+                    ClientSQL.Close();
+                    cnSQL.Close();
+                }
+            }
+
+            void ConvertMarqueStringToId()
+            {
+                cnSQL = new MySqlConnection(strcon);
+                cnSQL.Open();
+
+                string MarqueStrSQL = "SELECT * FROM marque WHERE Nom = '" + nomMarque + "'";
+
+                MySqlCommand MarqueCmSQL = new MySqlCommand(MarqueStrSQL, cnSQL);
+
+                MySqlDataReader MarqueSQL = MarqueCmSQL.ExecuteReader();
+
+                try
+                {
+                    while (MarqueSQL.Read())
+                    {
+                        string Marquevarchar = MarqueSQL.GetString(0);
+                        int MarqueId = Convert.ToInt32(Marquevarchar);
+
+                        comboBoxMarque.SelectedValue = MarqueId;
+                    }
+                }
+
+                finally
+                {
+                    MarqueSQL.Close();
+                    cnSQL.Close();
+                }
+            }
+
+
+            ConvertSiteStringToId();
+            ConvertClientStringToId();
+            ConvertMarqueStringToId();
+
             // comment comparer la string que nous retourne la cellule à la comboBoxSite.SelectedValue, vu que la SelectedValue est un int
 
         }
 
         private void buttonUpdateMateriel_Click(object sender, EventArgs e)
         {
-            /*materielRow row = this.gestionmatos1DataSet.materiel.FindByID(10);
+            string strcon = "Server=localhost;Database=gestionmatos1;Uid=root;Pwd=;";
+            MySqlConnection cnSQL = null;
+            MySqlCommand cmSQL = null;
+            string strSQL;
 
-            row.Nom = textBoxName.Text;
-                row.MTBF = 
+            int idMatos = Convert.ToInt32(dataGridViewMateriel.CurrentRow.Cells[0].Value);
 
-                row. */
+            this.name = textBoxName.Text;
+            this.serie = textBoxSerie.Text;
+            string ladate = dateTimePickerInstall.Value.ToString("yyyy-MM-dd");
+            this.mtbf = numericUpDownMTBF.Value;
 
+            name = name.Replace("'", "''");
+
+            int dsite = (int)(((ListControl)(comboBoxSite.DataBindings.Control)).SelectedValue);
+            int dclient = (int)(((ListControl)(comboBoxClient.DataBindings.Control)).SelectedValue);
+            int dmarque = (int)(((ListControl)(comboBoxMarque.DataBindings.Control)).SelectedValue);
+
+            cnSQL = new MySqlConnection(strcon);
+            cnSQL.Open();
+            strSQL = "UPDATE `materiel` " +
+                    "SET Nom = '" + name + "', NoSerie = '" + serie + "', Date_Installation = '" + ladate + "', MTBF = " + mtbf +
+                    ", ID_Site = " + dsite.ToString() + ", ID_Client = " + dclient.ToString() + ", ID_Marque = " + dmarque.ToString() +
+                    " WHERE ID = " + idMatos;
+
+            cmSQL = new MySqlCommand(strSQL, cnSQL);
+            cmSQL.ExecuteNonQuery();
+            cnSQL.Close();
 
             this.materielTableAdapter.Fill(this.gestionmatos1DataSet.materiel);
         }
